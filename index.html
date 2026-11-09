@@ -3,64 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTech Solutions</title>
+    <title>EcoTech Solutions S.L. | Atenció i Salut Mental Digital</title>
     <style>
-        /* Variables de color y fuentes */
         :root {
             --primary-yellow: #FFD700;
+            --primary-hover: #E6C200;
             --dark-bg: #121212;
             --card-bg: #1E1E1E;
             --text-light: #F5F5F5;
             --text-gray: #B3B3B3;
+            --accent-border: #2A2A2A;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--dark-bg);
             color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Navegación pegajosa (Sticky Nav) */
+        /* Nav */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
-            background: rgba(18, 18, 18, 0.9);
+            padding: 15px 40px;
+            background: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
+            border-bottom: 1px solid var(--accent-border);
         }
 
         .logo {
             color: var(--primary-yellow);
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        /* Sección Hero interactiva */
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-yellow);
+        }
+
+        /* Hero */
         .hero {
-            height: 100vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-            background: radial-gradient(circle at center, #2a2a2a 0%, var(--dark-bg) 100%);
+            padding: 120px 20px 60px;
+            background: radial-gradient(circle at center, #242424 0%, var(--dark-bg) 100%);
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            color: var(--text-light);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            max-width: 900px;
         }
 
         .hero h1 span {
@@ -68,75 +84,147 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-gray);
-            max-width: 600px;
-            margin-bottom: 30px;
+            max-width: 750px;
+            margin-bottom: 35px;
         }
 
-        /* Botón animado (Pulse effect) */
         .cta-btn {
             background-color: var(--primary-yellow);
             color: var(--dark-bg);
-            padding: 15px 40px;
+            padding: 16px 42px;
             border: none;
             border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            animation: pulse 2.5s infinite;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-btn:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
-            animation: none; /* Detiene el pulso al hacer hover */
+            transform: translateY(-3px) scale(1.03);
+            background-color: var(--primary-hover);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+            animation: none;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6); }
+            70% { box-shadow: 0 0 0 18px rgba(255, 215, 0, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
         }
 
-        /* Tarjetas de servicios / características */
-        .features {
-            padding: 100px 50px;
+        /* Main Content Container */
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--text-light);
+        }
+
+        .section-title span {
+            color: var(--primary-yellow);
+        }
+
+        /* Identity Cards Grid */
+        .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 25px;
+            margin-bottom: 60px;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-bottom: 4px solid transparent;
-            cursor: pointer;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid var(--accent-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-15px);
-            border-bottom: 4px solid var(--primary-yellow);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            transform: translateY(-8px);
+            border-color: var(--primary-yellow);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
         }
 
         .card h3 {
             color: var(--primary-yellow);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            margin-top: 0;
             margin-bottom: 15px;
         }
 
-        /* Clases para animación al hacer scroll (Scroll Reveal) */
+        .card ul {
+            padding-left: 20px;
+            color: var(--text-gray);
+        }
+
+        .card ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Contact Table Styling */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--accent-border);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--accent-border);
+        }
+
+        th {
+            color: var(--primary-yellow);
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--primary-yellow);
+        }
+
+        td {
+            color: var(--text-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0A0A0A;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--accent-border);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: var(--text-light);
+        }
+
+        /* Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(40px);
             transition: all 0.8s ease-out;
         }
 
@@ -148,58 +236,118 @@
 </head>
 <body>
 
-    <!-- Navegación -->
+    <!-- Navegació -->
     <nav>
-        <div class="logo">EcoTech</div>
+        <div class="logo">EcoTech Solutions</div>
+        <div class="nav-links">
+            <a href="#identitat">Identitat</a>
+            <a href="#contacte">Contacte i Llei</a>
+        </div>
     </nav>
 
-    <!-- Sección Principal -->
+    <!-- Hero -->
     <section class="hero">
-        <h1 class="reveal">Solucions <span>EcoTech</span></h1>
-        <p class="reveal" style="transition-delay: 0.2s;">Atenció omnicanal integrada i solucions tecnològiques sostenibles per al futur de la teva empresa.</p>
-        <button class="cta-btn reveal" style="transition-delay: 0.4s;">Comença ara</button>
+        <h1 class="reveal">Intel·ligència Artificial i Robòtica per a la <span>Salut Mental</span></h1>
+        <p class="reveal" style="transition-delay: 0.2s;">Detectem precoçment conductes de risc, prevenim el suïcidi i garantim una atenció empàtica, immediata i accessible que salvi vides.</p>
+        <a href="#contacte" class="cta-btn reveal" style="transition-delay: 0.4s;">Contacta amb Atenció al Client</a>
     </section>
 
-    <!-- Sección Interactiva de Tarjetas -->
-    <section class="features">
-        <div class="card reveal">
-            <h3>Suport 24/7</h3>
-            <p>Atenció personalitzada mitjançant el nostre xat integrat. Parla amb els nostres agents en temps real.</p>
-        </div>
-        <div class="card reveal" style="transition-delay: 0.2s;">
-            <h3>Sostenibilitat</h3>
-            <p>Apostem per processos tecnològics que redueixen la petjada de carboni i optimitzen recursos.</p>
-        </div>
-        <div class="card reveal" style="transition-delay: 0.4s;">
-            <h3>Integració Ràpida</h3>
-            <p>Sistemes adaptats a les teves necessitats amb implementació immediata i segura.</p>
+    <!-- Secció Identitat Corporativa -->
+    <section id="identitat" class="container">
+        <h2 class="section-title reveal">Identitat <span>Corporativa</span></h2>
+        
+        <div class="grid-3">
+            <div class="card reveal">
+                <h3>Missió</h3>
+                <p>Desenvolupar i comercialitzar solucions tecnològiques basades en intel·ligència artificial i robòtica assistencial adreçades a persones en risc de vulnerabilitat emocional, entitats del tercer sector (ONG), centres sanitaris i administracions públiques.</p>
+            </div>
+
+            <div class="card reveal" style="transition-delay: 0.2s;">
+                <h3>Visió</h3>
+                <p>Esdevenir, abans de l'any 2030, l'empresa tecnològica de referència a Catalunya i a l'Estat espanyol en l'àmbit de la salut mental digital i la prevenció del suïcidi, integrant eines d'IA ètica en més del 40% de les entitats socials.</p>
+            </div>
+
+            <div class="card reveal" style="transition-delay: 0.4s;">
+                <h3>Valors</h3>
+                <ul>
+                    <li><strong>Empatia i ètica:</strong> Escolto activa sense judicis i prioritat absoluta a les alertes emocionals.</li>
+                    <li><strong>Innovació responsable:</strong> IA rigorosa amb verificació humana constant per especialistes en psicologia.</li>
+                    <li><strong>Compromís social:</strong> Col·laboració directa amb ONG i serveis d'emergències.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <!-- SCRIPT PARA ANIMACIONES INTERACTIVAS -->
+    <!-- Secció Contacte i Codi de Consum -->
+    <section id="contacte" class="container">
+        <h2 class="section-title reveal">Informació Corporativa i <span>Atenció al Client</span></h2>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 30px;" class="reveal">D'acord amb la normativa del Codi de Consum de Catalunya (Llei 22/2010), EcoTech Solutions S.L. garanteix informació clara, accessible i atenció gratuïta.</p>
+        
+        <div class="table-container reveal">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Concepte</th>
+                        <th>Detall / Informació Corporativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Raó Social</strong></td>
+                        <td>EcoTech Solutions S.L.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NIF</strong></td>
+                        <td>B-12345678</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Domicili Social</strong></td>
+                        <td>Carrer de la Tecnologia, 45, 08001 Barcelona, Espanya</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Telèfon d'Atenció (Gratuït)</strong></td>
+                        <td>900 123 456 (Línia 24/7 per a consultes i incidències)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Correu Electrònic</strong></td>
+                        <td>atencio@ecotechsolutions.cat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Atenció Web</strong></td>
+                        <td>Xat en viu 24/7 disponible en aquesta mateixa pàgina</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <strong>EcoTech Solutions S.L.</strong> — Tots els drets reservats.</p>
+        <p>Projecte Transversal: Atenció al client, consumidor i usuari (Alan Alepuz, Marc Gil i Christian Barba).</p>
+    </footer>
+
+    <!-- Script Animacions Scroll -->
     <script>
-        // Lógica para que los elementos aparezcan suavemente al hacer scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Punto de activación
+                var elementVisible = 80;
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
-
-        // Event listener para el scroll
         window.addEventListener("scroll", reveal);
-        
-        // Ejecutar una vez al cargar para los elementos que ya están en pantalla
         reveal();
     </script>
 
-<!-- Start of HubSpot Embed Code --> <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/149733808.js"></script> <!-- End of HubSpot Embed Code -->
-    
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/149733808.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
 </body>
 </html>
