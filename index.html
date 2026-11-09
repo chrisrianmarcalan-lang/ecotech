@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ca" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech Solutions | Tecnologia per la Salut Mental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        teal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        blue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <!-- Navegació -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/50 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-slate-800">EcoTech Solutions</span>
+                </div>
+                
+                <!-- Enllaços Escriptori -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inici" class="text-slate-600 hover:text-teal-600 font-medium transition">Inici</a>
+                    <a href="#qui-som" class="text-slate-600 hover:text-teal-600 font-medium transition">Qui Som</a>
+                    <a href="#valors" class="text-slate-600 hover:text-teal-600 font-medium transition">Valors</a>
+                    <a href="#contacte" class="text-slate-600 hover:text-teal-600 font-medium transition">Contacte</a>
+                    <a href="#atencio" class="px-5 py-2.5 bg-teal-600 text-white rounded-full font-medium hover:bg-teal-700 transition shadow-lg shadow-teal-600/20 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        Atenció al Client
+                    </a>
+                </div>
+
+                <!-- Botó Menú Mòbil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-teal-600 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Mòbil (Ocult per defecte) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="#inici" class="block px-3 py-2 text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg">Inici</a>
+                <a href="#qui-som" class="block px-3 py-2 text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg">Qui Som</a>
+                <a href="#valors" class="block px-3 py-2 text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg">Valors</a>
+                <a href="#contacte" class="block px-3 py-2 text-slate-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg">Contacte</a>
+                <a href="#atencio" class="block px-3 py-2 bg-teal-50 text-teal-700 font-semibold rounded-lg mt-4 text-center">Atenció al Client</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inici" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-blue-50/50 via-teal-50/30 to-slate-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-teal-100/40 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100/40 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-teal-100 text-teal-700 text-sm font-semibold mb-6 shadow-sm">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
+                    </span>
+                    e-Health & Prevenció
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-slate-900 leading-[1.15]">
+                    Tecnologia amb empatia per <span class="text-teal-600">protegir vides.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed">
+                    Apliquem Intel·ligència Artificial i robòtica avançada al servei de la salut mental i la prevenció del suïcidi. Una resposta humana potenciar per la millor tecnologia.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#atencio" class="px-8 py-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-semibold text-center transition shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"></path></svg>
+                        Línia d'Ajuda 24/7
+                    </a>
+                    <a href="#qui-som" class="px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-xl font-semibold text-center transition shadow-sm">
+                        Descobreix el nostre projecte
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qui Som Section -->
+    <section id="qui-som" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 relative">
+                    <div class="absolute inset-0 bg-teal-50 rounded-3xl transform -rotate-3 scale-105"></div>
+                    <div class="relative bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+                        <div class="mb-10">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-800">La Nostra Missió</h3>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-lg">
+                                Detectar conductes de risc de manera primerenca i prevenir el suïcidi a través de solucions innovadores d'IA i robòtica. Treballem braç a braç col·laborant estretament amb ONGs i administracions públiques per salvar vides.
+                            </p>
+                        </div>
+                        <div class="pt-8 border-t border-slate-100">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-800">La Nostra Visió</h3>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-lg">
+                                Convertir-nos en el referent tecnològic indispensable en salut mental a Catalunya i Espanya per a l'any 2030, democratitzant l'accés a eines de suport emocional avançades.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Qui Som</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+                        La innovació només té sentit si millora el benestar de les persones.
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-6">
+                        A EcoTech Solutions S.L. entenem que els problemes complexos requereixen respostes multidisciplinàries. Som un equip de tecnòlegs, psicòlegs i experts en dades units per un propòsit comú.
+                    </p>
+                    <p class="text-slate-600 text-lg">
+                        Desenvolupem algorismes ètics de detecció i assistents robòtics dissenyats no per substituir l'atenció humana, sinó per potenciar-la, alertar a temps i oferir contenció en els moments més crítics.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valors Section -->
+    <section id="valors" class="py-24 bg-slate-50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Pilars Corporatius</span>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Els nostres Valors</h2>
+                <p class="text-slate-600 text-lg">Guiem cada línia de codi i cada interacció sota principis inamovibles.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Valor 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Empatia i Ètica</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Creiem en una tecnologia centrada exclusivament en l'ésser humà. Prioritzem la privacitat, el respecte i la calidesa en totes les nostres solucions e-Health.
+                    </p>
+                </div>
+
+                <!-- Valor 2 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Innovació Responsable</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Desenvolupem intel·ligència artificial rigorosa, auditable i segura. Apliquem el mètode científic per garantir l'eficàcia clínica dels nostres algorismes.
+                    </p>
+                </div>
+
+                <!-- Valor 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Compromís Social</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Treballem en col·laboració activa amb ONGs, associacions de pacients i entitats públiques per assegurar que les nostres eines arribin a qui més ho necessita.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atenció al Client (Emergency & Admin) -->
+    <section id="atencio" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-teal-900 rounded-3xl overflow-hidden relative shadow-xl">
+                <!-- Abstract BG -->
+                <div class="absolute inset-0 opacity-20">
+                    <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grad)"></path>
+                        <defs>
+                            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#14b8a6" />
+                                <stop offset="100%" stop-color="#0f766e" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <div class="relative z-10 p-8 md:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">No estàs sol. Estem aquí per escoltar-te.</h2>
+                        <p class="text-teal-100 text-lg mb-8">El nostre servei d'emergències compta amb operadors humans especialitzats, disposats a oferir suport emocional immediat. La tecnologia ens connecta, l'empatia ens salva.</p>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 mb-6">
+                            <div class="flex items-center gap-4 mb-2">
+                                <span class="flex h-4 w-4 relative">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
+                                </span>
+                                <h4 class="text-white font-semibold text-lg">Línia d'Emergències 24/7 (Gratuïta)</h4>
+                            </div>
+                            <p class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-wider">900 123 456</p>
+                            <p class="text-teal-100 text-sm">Disponible tots els dies de l'any, a qualsevol hora.</p>
+                        </div>
+                        
+                        <button class="w-full sm:w-auto px-6 py-3 bg-white text-teal-900 font-bold rounded-xl hover:bg-teal-50 transition shadow-lg flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                            Obrir Xat d'Emergència Ara
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 text-slate-800">
+                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Atenció Administrativa</h3>
+                        <p class="text-slate-600 mb-6">Per a consultes sobre els nostres serveis de B2B, solucions per a institucions i gestió general.</p>
+                        
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-teal-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                <div>
+                                    <span class="font-semibold block">Dilluns a Divendres</span>
+                                    <span class="text-slate-500 text-sm">De 8:00 a 20:00 hores</span>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <span>suport@ecotechsolutions.cat</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacte Section -->
+    <section id="contacte" class="py-24 bg-slate-50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Informació de contacte -->
+                <div>
+                    <span class="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Parlem?</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Contacta amb l'equip</h2>
+                    <p class="text-slate-600 mb-8 text-lg">Si representes a una ONG, entitat sanitària o administració pública i vols integrar les nostres solucions de IA, escriu-nos.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-teal-600 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">Seu Central</h4>
+                                <p class="text-slate-600">Carrer de la Tecnologia, 45<br>08001 Barcelona, Espanya</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-teal-600 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1">Correu Electrònic</h4>
+                                <p class="text-slate-600">atencio@ecotechsolutions.cat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulari -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+                    <form onsubmit="event.preventDefault(); document.getElementById('contact-success').classList.remove('hidden'); this.reset();" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="nom" class="block text-sm font-medium text-slate-700 mb-1">Nom</label>
+                                <input type="text" id="nom" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition bg-slate-50 focus:bg-white" placeholder="El teu nom">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Correu</label>
+                                <input type="email" id="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition bg-slate-50 focus:bg-white" placeholder="correu@entitat.cat">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="entitat" class="block text-sm font-medium text-slate-700 mb-1">Organització / Entitat (Opcional)</label>
+                            <input type="text" id="entitat" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition bg-slate-50 focus:bg-white" placeholder="Nom de l'organització">
+                        </div>
+                        <div>
+                            <label for="missatge" class="block text-sm font-medium text-slate-700 mb-1">Missatge</label>
+                            <textarea id="missatge" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition bg-slate-50 focus:bg-white resize-none" placeholder="Com podem col·laborar?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg transition shadow-md">
+                            Enviar Missatge
+                        </button>
+                        
+                        <div id="contact-success" class="hidden mt-4 p-4 bg-teal-50 text-teal-800 border border-teal-200 rounded-lg text-sm flex items-center gap-2">
+                            <svg class="w-5 h-5 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Missatge enviat correctament. Et contactarem aviat.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-white">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
+                            </svg>
+                        </div>
+                        <span class="font-bold text-lg text-slate-900">EcoTech Solutions S.L.</span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-sm mb-6 leading-relaxed">
+                        Innovació tecnològica al servei de la salut mental. Treballem per un futur on la intel·ligència artificial ajudi a salvar vides i millorar el benestar emocional.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-slate-900 mb-4">Seccions</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#inici" class="hover:text-teal-600 transition">Inici</a></li>
+                        <li><a href="#qui-som" class="hover:text-teal-600 transition">Qui Som</a></li>
+                        <li><a href="#valors" class="hover:text-teal-600 transition">Els nostres Valors</a></li>
+                        <li><a href="#atencio" class="hover:text-teal-600 transition">Atenció al Client</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-slate-900 mb-4">Legal i Privacitat</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-teal-600 transition">Avís Legal</a></li>
+                        <li><a href="#" class="hover:text-teal-600 transition">Política de Privacitat</a></li>
+                        <li><a href="#" class="hover:text-teal-600 transition">Política de Galetes</a></li>
+                        <li><a href="#" class="hover:text-teal-600 transition">Accessibilitat</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+                <p>&copy; 2024 EcoTech Solutions S.L. Tots els drets reservats.</p>
+                <div class="flex gap-4">
+                    <span class="flex items-center gap-1">
+                        Fet amb <svg class="w-4 h-4 text-rose-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg> a Barcelona
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script per al Menú Mòbil -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const links = menu.querySelectorAll('a');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
