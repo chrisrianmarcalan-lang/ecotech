@@ -3,140 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTech Solutions | Tecnologia per la Salut Mental</title>
+    <title>EcoTech Solutions S.L. | e-Health, IA Ètica i Prevenció del Suïcidi 24/7</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ecotech: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
                     }
                 }
             }
         }
     </script>
+
     <style>
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
+        /* Mode Calma / Baix Estímul Visual */
+        body.calm-mode {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
         }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
+        body.calm-mode * {
+            transition-duration: 0ms !important;
+            animation: none !important;
+        }
+        body.calm-mode .calm-card {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+            color: #f1f5f9 !important;
+        }
+        body.calm-mode .calm-bg-alt {
+            background-color: #090d16 !important;
+        }
+        body.calm-mode .calm-text-muted {
+            color: #94a3b8 !important;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 9999px;
         }
     </style>
 </head>
-<body class="font-sans text-slate-700 bg-slate-50 antialiased selection:bg-amber-200 selection:text-amber-900 relative">
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-300">
 
-    <!-- Toast Notification Flotant -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700">
-            <svg class="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span id="toast-message" class="text-sm font-medium">Acció realitzada correctament.</span>
+    <!-- ===================================================================== -->
+    <!-- 1. BARRA SUPERIOR DE SEGURETAT, ACCESSIBILITAT I IDIOMA (STICKY TOP)  -->
+    <!-- ===================================================================== -->
+    <div class="bg-slate-900 text-slate-200 text-xs border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2">
+            
+            <!-- Telèfon directe 1-clic + SLA -->
+            <div class="flex items-center gap-3">
+                <a href="tel:900123456" onclick="trackHubSpotEvent('call_900_topbar')" class="inline-flex items-center gap-1.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full font-semibold transition">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+                    <span data-i18n="top_phone">Línia Gratuïta 24/7: 900 123 456 (Atenció &lt;15s)</span>
+                </a>
+                <span class="hidden md:inline-flex items-center gap-1 text-slate-400">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-teal-400"></i>
+                    <span data-i18n="top_rgpd">Equip 100% Propi · Art. 9 RGPD Blindat</span>
+                </span>
+            </div>
+
+            <!-- Controls d'Usuari: Mode Calma, Idioma (Llei 22/2010) i Sortida Ràpida -->
+            <div class="flex items-center gap-2 sm:gap-3 ml-auto">
+                <!-- Mode Calma (Baix Estímul per a crisi d'ansietat) -->
+                <button id="calmModeBtn" onclick="toggleCalmMode()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition" title="Redueix la lluminositat i les animacions">
+                    <i data-lucide="moon" class="w-3.5 h-3.5 text-teal-400"></i>
+                    <span id="calmModeText" data-i18n="calm_mode">Mode Calma</span>
+                </button>
+
+                <!-- Selector d'Idioma (Dret lingüístic Codi de Consum de Catalunya) -->
+                <div class="inline-flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700" role="group" aria-label="Selector d'idioma">
+                    <button onclick="setLanguage('ca')" id="lang-ca" class="px-2 py-0.5 rounded-md font-bold bg-emerald-600 text-white transition">CA</button>
+                    <button onclick="setLanguage('es')" id="lang-es" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:text-white transition">ES</button>
+                    <button onclick="setLanguage('en')" id="lang-en" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:text-white transition">EN</button>
+                </div>
+
+                <!-- Botó de Sortida Ràpida (Panic Button per a privacitat d'usuaris vulnerables) -->
+                <button onclick="quickExit()" class="inline-flex items-center gap-1.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3 py-1 rounded-lg shadow-sm transition" title="Tanca aquesta pàgina immediatament i redirigeix a Google (o prem ESC 2 vegades)">
+                    <i data-lucide="eye-off" class="w-3.5 h-3.5"></i>
+                    <span data-i18n="quick_exit">Sortida Ràpida (Esc x2)</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Botó Volver Arriba -->
-    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 left-6 z-40 p-3 bg-white border border-slate-200 text-slate-700 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-amber-50 hover:text-amber-600">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-    </button>
+    <!-- ===================================================================== -->
+    <!-- 2. BARRA DE NAVEGACIÓ PRINCIPAL                                       -->
+    <!-- ===================================================================== -->
+    <header class="bg-white/90 calm-card backdrop-blur-md border-b border-slate-200/80 sticky top-[37px] z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo EcoTech -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition">
+                    <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight text-slate-900 dark:text-white">EcoTech</span>
+                    <span class="font-semibold text-lg text-emerald-600">Solutions</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-slate-400 -mt-1 font-semibold">e-Health · IA & Robòtica</span>
+                </div>
+            </a>
 
-    <!-- Navegació -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/50 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
-                        </svg>
-                    </div>
-                    <span class="font-bold text-xl tracking-tight text-slate-800">EcoTech Solutions</span>
-                </div>
-                
-                <!-- Enllaços Escriptori -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#inici" class="text-slate-600 hover:text-amber-600 font-medium transition">Inici</a>
-                    <a href="#qui-som" class="text-slate-600 hover:text-amber-600 font-medium transition">Qui Som</a>
-                    <a href="#valors" class="text-slate-600 hover:text-amber-600 font-medium transition">Valors</a>
-                    <a href="#faq" class="text-slate-600 hover:text-amber-600 font-medium transition">FAQ</a>
-                    <a href="#contacte" class="text-slate-600 hover:text-amber-600 font-medium transition">Contacte</a>
-                    <a href="#atencio" class="px-5 py-2.5 bg-amber-500 text-white rounded-full font-medium hover:bg-amber-600 transition shadow-lg shadow-amber-500/20 flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        Atenció al Client
-                    </a>
-                </div>
+            <!-- Enllaços Desktop -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 calm-text-muted">
+                <a href="#qui-som" class="hover:text-emerald-600 transition" data-i18n="nav_about">Identitat i Valors</a>
+                <a href="#posicionament" class="hover:text-emerald-600 transition" data-i18n="nav_pos">Posicionament</a>
+                <a href="#arquitectura" class="hover:text-emerald-600 transition" data-i18n="nav_dept">Organigrama i Fluxos</a>
+                <a href="#atencio" class="hover:text-emerald-600 transition" data-i18n="nav_support">Atenció 24/7 i Tiquets</a>
+                <a href="#faq" class="hover:text-emerald-600 transition">FAQ</a>
+                <a href="#contacte" class="hover:text-emerald-600 transition" data-i18n="nav_b2b">Portal B2B / ONG</a>
+            </nav>
 
-                <!-- Botó Menú Mòbil -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-amber-600 focus:outline-none p-2">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
+            <!-- Botons d'Acció Immediata -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="openTriageModal()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 transition">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+                    <span data-i18n="btn_triage">Triatge Ràpid</span>
+                </button>
+                <button onclick="openHubSpotChat('crisi')" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 transition">
+                    <i data-lucide="message-circle-heart" class="w-4 h-4"></i>
+                    <span data-i18n="btn_chat_247">Xat 24/7 (&lt;15s)</span>
+                </button>
             </div>
         </div>
+    </header>
 
-        <!-- Menú Mòbil -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full">
-            <div class="px-4 pt-2 pb-4 space-y-2">
-                <a href="#inici" class="block px-3 py-2 text-slate-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg">Inici</a>
-                <a href="#qui-som" class="block px-3 py-2 text-slate-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg">Qui Som</a>
-                <a href="#valors" class="block px-3 py-2 text-slate-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg">Valors</a>
-                <a href="#faq" class="block px-3 py-2 text-slate-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg">FAQ</a>
-                <a href="#contacte" class="block px-3 py-2 text-slate-700 hover:bg-amber-50 hover:text-amber-600 rounded-lg">Contacte</a>
-                <a href="#atencio" class="block px-3 py-2 bg-amber-50 text-amber-700 font-semibold rounded-lg mt-4 text-center">Atenció al Client</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="inici" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-slate-100/50 via-amber-50/30 to-slate-50 relative overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-amber-100/40 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-slate-200/40 blur-3xl"></div>
+    <!-- ===================================================================== -->
+    <!-- 3. HERO SECTION AMB TRIATGE INTERACTIU I CONNEXIÓ HUBSPOT             -->
+    <!-- ===================================================================== -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900 text-white py-16 lg:py-24">
+        <!-- Fons decoratiu -->
+        <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px]"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl fade-in-up">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-amber-100 text-amber-700 text-sm font-semibold mb-6 shadow-sm">
-                    <span class="relative flex h-2.5 w-2.5">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
-                    </span>
-                    e-Health & Prevenció
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Columna Esquerra: Missatge Principal -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        <span data-i18n="hero_badge">e-Health · IA Ètica i Robòtica Assistencial per a la Prevenció del Suïcidi</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight" data-i18n="hero_title">
+                        Tecnologia amb empatia per protegir vides.
+                    </h1>
+
+                    <p class="text-lg text-emerald-100/90 leading-relaxed max-w-2xl" data-i18n="hero_subtitle">
+                        Desenvolupem aplicacions mòbils amb algoritmes ètics de detecció precoç i robots d'acompanyament per a persones en vulnerabilitat emocional, ONG, centres sanitaris i administracions públiques. Atenció humana immediata en menys de 15 segons.
+                    </p>
+
+                    <!-- Botons CTA -->
+                    <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                        <a href="tel:900123456" onclick="trackHubSpotEvent('hero_call_900')" class="inline-flex items-center gap-2.5 bg-white text-emerald-950 hover:bg-emerald-50 font-bold px-6 py-3.5 rounded-2xl shadow-lg transition">
+                            <i data-lucide="phone-call" class="w-5 h-5 text-emerald-600"></i>
+                            <span data-i18n="hero_cta_call">Trucar al 900 123 456 (Gratuït)</span>
+                        </a>
+                        <button onclick="openHubSpotChat('crisi')" class="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3.5 rounded-2xl border border-emerald-400/40 shadow-lg transition">
+                            <i data-lucide="messages-square" class="w-5 h-5"></i>
+                            <span data-i18n="hero_cta_chat">Iniciar Xat en Viu 24/7</span>
+                        </button>
+                        <a href="#contacte" class="inline-flex items-center gap-2 bg-slate-800/70 hover:bg-slate-800 text-emerald-200 font-medium px-5 py-3.5 rounded-2xl border border-slate-700 transition">
+                            <i data-lucide="building-2" class="w-4 h-4"></i>
+                            <span data-i18n="hero_cta_b2b">Portal ONG i Administracions</span>
+                        </a>
+                    </div>
+
+                    <!-- KPIs de la Visió 2030 i Departament -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-emerald-800/60">
+                        <div>
+                            <p class="text-2xl font-extrabold text-emerald-400">&lt; 15 seg</p>
+                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_1">Temps de resposta Front Office (Nivell 1)</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold text-emerald-400">Sense límit</p>
+                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_2">Durada de trucada en alertes emocionals</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold text-emerald-400">+40% al 2030</p>
+                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_3">Objectiu d'integració en xarxes públiques i ONG</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-extrabold text-emerald-400">100% Propi</p>
+                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_4">Zero externalització (Art. 9 RGPD)</p>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-slate-900 leading-[1.15]">
-                    Tecnologia amb empatia per <span class="text-amber-500">protegir vides.</span>
-                </h1>
-                <p class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed">
-                    Apliquem Intel·ligència Artificial i robòtica avançada al servei de la salut mental i la prevenció del suïcidi. Una resposta humana potenciat per la millor tecnologia.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#atencio" class="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-semibold text-center transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414"></path></svg>
-                        Línia d'Ajuda 24/7
-                    </a>
-                    <a href="#qui-som" class="px-8 py-4 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-xl font-semibold text-center transition shadow-sm">
-                        Descobreix el nostre projecte
-                    </a>
+
+                <!-- Columna Dreta: Assistent Interactiu de Triatge Emocional i Suport -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/95 calm-card text-slate-800 rounded-3xl p-6 sm:p-7 shadow-2xl border border-emerald-500/30">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                                Triatge Intel·ligent + Humà
+                            </span>
+                            <span class="text-xs text-slate-400 font-medium">Nivell 1 → Nivell 2</span>
+                        </div>
+
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2" data-i18n="triage_title">
+                            Com et podem ajudar ara mateix?
+                        </h2>
+                        <p class="text-xs text-slate-500 calm-text-muted mb-5" data-i18n="triage_desc">
+                            Selecciona el teu cas per connectar amb l'equip adequat (Operadors amb formació PAP, Psicòlegs de Back Office o Àrea B2B):
+                        </p>
+
+                        <!-- Opcions de Triatge -->
+                        <div class="space-y-3" id="triageOptions">
+                            <!-- Opció A: Crisi / Suport Emocional -->
+                            <button onclick="selectTriagePath('crisi')" class="w-full text-left p-4 rounded-2xl border-2 border-rose-200 bg-rose-50/60 hover:bg-rose-100/80 transition flex items-start gap-3.5 group">
+                                <div class="p-2.5 rounded-xl bg-rose-600 text-white shrink-0 mt-0.5">
+                                    <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-rose-950 text-sm group-hover:underline" data-i18n="triage_opt_a">
+                                        Necessito suport emocional ara (per a mi o algú proper)
+                                    </p>
+                                    <p class="text-xs text-rose-800/80 mt-0.5">
+                                        Prioritat absoluta (&lt;15s). Escolta activa sense judicis i sense límit de temps.
+                                    </p>
+                                </div>
+                            </button>
+
+                            <!-- Opció B: Usuari App / Robot Assistencial (Incidència Tècnica) -->
+                            <button onclick="selectTriagePath('tecnic')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-emerald-400 bg-slate-50 hover:bg-emerald-50/40 calm-card transition flex items-start gap-3.5 group">
+                                <div class="p-2.5 rounded-xl bg-emerald-600 text-white shrink-0 mt-0.5">
+                                    <i data-lucide="bot" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-emerald-700" data-i18n="triage_opt_b">
+                                        Sóc usuari de l'App o Robot i tinc una incidència tècnica
+                                    </p>
+                                    <p class="text-xs text-slate-500 calm-text-muted mt-0.5">
+                                        Sincronització d'alertes, falsos positius d'IA, contrasenyes o peticions.
+                                    </p>
+                                </div>
+                            </button>
+
+                            <!-- Opció C: ONG / Hospital / Administració Pública -->
+                            <button onclick="selectTriagePath('b2b')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-teal-400 bg-slate-50 hover:bg-teal-50/40 calm-card transition flex items-start gap-3.5 group">
+                                <div class="p-2.5 rounded-xl bg-teal-700 text-white shrink-0 mt-0.5">
+                                    <i data-lucide="building" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-teal-700" data-i18n="triage_opt_c">
+                                        Represento una ONG, Hospital o Administració Pública
+                                    </p>
+                                    <p class="text-xs text-slate-500 calm-text-muted mt-0.5">
+                                        Acords SLA, integració d'IA ètica, licitacions i suport B2B (Dl-Dv 8h a 20h).
+                                    </p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- Resultat Dinàmic del Triatge -->
+                        <div id="triageResultBox" class="hidden mt-4 pt-4 border-t border-slate-200"></div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Qui Som Section -->
-    <section id="qui-som" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1 relative">
-                    <div class="absolute inset-0 bg-amber-50 rounded-3xl transform -rotate-3 scale-105"></div>
-                    <div class="relative bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-                        <div class="mb-10">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center">
+    <!-- ===================================================================== -->
+    <!-- 4. IDENTITAT CORPORATIVA: MISSIÓ, VISIÓ I VALORS                      -->
+    <!-- ===================================================================== -->
+    <section id="qui-som" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                1. Identitat Corporativa i Imatge
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900d-full flex items-center justify-center">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                 </div>
                                 <h3 class="text-2xl font-bold text-slate-800">La Nostra Missió</h3>
