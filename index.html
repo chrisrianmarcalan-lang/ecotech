@@ -1,20 +1,17 @@
 <!DOCTYPE html>
-<html lang="ca" class="scroll-smooth">
+<html lang="ca" class="scroll-smooth" data-lt-installed="true">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoTech Solutions S.L. | e-Health, IA Ètica i Prevenció del Suïcidi 24/7</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./EcoTech Solutions S.L. _ e-Health, IA Ètica i Prevenció del Suïcidi 24_7_files/css2" rel="stylesheet">
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./EcoTech Solutions S.L. _ e-Health, IA Ètica i Prevenció del Suïcidi 24_7_files/lucide@latest"></script>
 
     <script>
         tailwind.config = {
@@ -26,14 +23,14 @@
                     },
                     colors: {
                         ecotech: {
-                            50: '#fefce8',
-100: '#fef9c3',
-200: '#fef08a',
-500: '#eab308',
-600: '#ca8a04',
-700: '#a16207',
-800: '#854d0e',
-900: '#713f12',
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
                         }
                     }
                 }
@@ -42,7 +39,6 @@
     </script>
 
     <style>
-        /* Mode Calma / Baix Estímul Visual */
         body.calm-mode {
             background-color: #0f172a !important;
             color: #e2e8f0 !important;
@@ -62,7 +58,6 @@
         body.calm-mode .calm-text-muted {
             color: #94a3b8 !important;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -70,49 +65,42 @@
             background: #f1f5f9;
         }
         ::-webkit-scrollbar-thumb {
-            background: #10b981;
+            background: #f59e0b;
             border-radius: 9999px;
         }
     </style>
 </head>
-<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white transition-colors duration-300">
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white transition-colors duration-300">
 
-    <!-- ===================================================================== -->
-    <!-- 1. BARRA SUPERIOR DE SEGURETAT, ACCESSIBILITAT I IDIOMA (STICKY TOP)  -->
-    <!-- ===================================================================== -->
+    <!-- BARRA SUPERIOR -->
     <div class="bg-slate-900 text-slate-200 text-xs border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2">
             
-            <!-- Telèfon directe 1-clic + SLA -->
             <div class="flex items-center gap-3">
-                <a href="tel:900123456" onclick="trackHubSpotEvent('call_900_topbar')" class="inline-flex items-center gap-1.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full font-semibold transition">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <a href="tel:900123456" onclick="trackHubSpotEvent('call_900_topbar')" class="inline-flex items-center gap-1.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-full font-semibold transition">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
                     <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
                     <span data-i18n="top_phone">Línia Gratuïta 24/7: 900 123 456 (Atenció &lt;15s)</span>
                 </a>
                 <span class="hidden md:inline-flex items-center gap-1 text-slate-400">
-                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-teal-400"></i>
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i>
                     <span data-i18n="top_rgpd">Equip 100% Propi · Art. 9 RGPD Blindat</span>
                 </span>
             </div>
 
-            <!-- Controls d'Usuari: Mode Calma, Idioma (Llei 22/2010) i Sortida Ràpida -->
             <div class="flex items-center gap-2 sm:gap-3 ml-auto">
-                <!-- Mode Calma (Baix Estímul per a crisi d'ansietat) -->
                 <button id="calmModeBtn" onclick="toggleCalmMode()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition" title="Redueix la lluminositat i les animacions">
-                    <i data-lucide="moon" class="w-3.5 h-3.5 text-teal-400"></i>
+                    <i data-lucide="moon" class="w-3.5 h-3.5 text-amber-400"></i>
                     <span id="calmModeText" data-i18n="calm_mode">Mode Calma</span>
                 </button>
 
-                <!-- Selector d'Idioma (Dret lingüístic Codi de Consum de Catalunya) -->
-                <div class="inline-flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700" role="group" aria-label="Selector d'idioma">
-                    <button onclick="setLanguage('ca')" id="lang-ca" class="px-2 py-0.5 rounded-md font-bold bg-emerald-600 text-white transition">CA</button>
+                <div class="inline-flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700" role="group">
+                    <button onclick="setLanguage('ca')" id="lang-ca" class="px-2 py-0.5 rounded-md font-bold bg-amber-500 text-white transition">CA</button>
                     <button onclick="setLanguage('es')" id="lang-es" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:text-white transition">ES</button>
                     <button onclick="setLanguage('en')" id="lang-en" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:text-white transition">EN</button>
                 </div>
 
-                <!-- Botó de Sortida Ràpida (Panic Button per a privacitat d'usuaris vulnerables) -->
-                <button onclick="quickExit()" class="inline-flex items-center gap-1.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3 py-1 rounded-lg shadow-sm transition" title="Tanca aquesta pàgina immediatament i redirigeix a Google (o prem ESC 2 vegades)">
+                <button onclick="quickExit()" class="inline-flex items-center gap-1.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3 py-1 rounded-lg shadow-sm transition" title="Tanca aquesta pàgina immediatament">
                     <i data-lucide="eye-off" class="w-3.5 h-3.5"></i>
                     <span data-i18n="quick_exit">Sortida Ràpida (Esc x2)</span>
                 </button>
@@ -120,14 +108,11 @@
         </div>
     </div>
 
-    <!-- ===================================================================== -->
-    <!-- 2. BARRA DE NAVEGACIÓ PRINCIPAL                                       -->
-    <!-- ===================================================================== -->
+    <!-- HEADER / NAVEGACIÓ -->
     <header class="bg-white/90 calm-card backdrop-blur-md border-b border-slate-200/80 sticky top-[37px] z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Logo EcoTech -->
             <a href="#" class="flex items-center gap-2.5 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:scale-105 transition">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition">
                     <i data-lucide="heart-handshake" class="w-5 h-5"></i>
                 </div>
                 <div>
@@ -136,23 +121,21 @@
                 </div>
             </a>
 
-            <!-- Enllaços Desktop -->
-            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-amber-500 calm-text-muted">
-                <a href="#qui-som" class="hover:text-emerald-600 transition" data-i18n="nav_about">Identitat i Valors</a>
-                <a href="#posicionament" class="hover:text-emerald-600 transition" data-i18n="nav_pos">Posicionament</a>
-                <a href="#arquitectura" class="hover:text-emerald-600 transition" data-i18n="nav_dept">Organigrama i Fluxos</a>
-                <a href="#atencio" class="hover:text-emerald-600 transition" data-i18n="nav_support">Atenció 24/7 i Tiquets</a>
-                <a href="#faq" class="hover:text-emerald-600 transition">FAQ</a>
-                <a href="#contacte" class="hover:text-emerald-600 transition" data-i18n="nav_b2b">Portal B2B / ONG</a>
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 calm-text-muted">
+                <a href="#qui-som" class="hover:text-amber-600 transition" data-i18n="nav_about">Identitat i Valors</a>
+                <a href="#posicionament" class="hover:text-amber-600 transition" data-i18n="nav_pos">Posicionament</a>
+                <a href="#arquitectura" class="hover:text-amber-600 transition" data-i18n="nav_dept">Organigrama i Fluxos</a>
+                <a href="#atencio" class="hover:text-amber-600 transition" data-i18n="nav_support">Atenció 24/7 i Tiquets</a>
+                <a href="#faq" class="hover:text-amber-600 transition">FAQ</a>
+                <a href="#contacte" class="hover:text-amber-600 transition" data-i18n="nav_b2b">Portal B2B / ONG</a>
             </nav>
 
-            <!-- Botons d'Acció Immediata -->
             <div class="flex items-center gap-2.5">
-                <button onclick="openTriageModal()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 transition">
-                    <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+                <button onclick="openTriageModal()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-200 transition">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
                     <span data-i18n="btn_triage">Triatge Ràpid</span>
                 </button>
-                <button onclick="openHubSpotChat('crisi')" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 transition">
+                <button onclick="openHubSpotChat('crisi')" class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white shadow-md shadow-amber-500/20 transition">
                     <i data-lucide="message-circle-heart" class="w-4 h-4"></i>
                     <span data-i18n="btn_chat_247">Xat 24/7 (&lt;15s)</span>
                 </button>
@@ -160,19 +143,15 @@
         </div>
     </header>
 
-    <!-- ===================================================================== -->
-    <!-- 3. HERO SECTION AMB TRIATGE INTERACTIU I CONNEXIÓ HUBSPOT             -->
-    <!-- ===================================================================== -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900 text-white py-16 lg:py-24">
-        <!-- Fons decoratiu -->
-        <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <!-- HERO SECTION -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-amber-950 to-slate-900 text-white py-16 lg:py-24">
+        <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:24px_24px]"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 
-                <!-- Columna Esquerra: Missatge Principal -->
                 <div class="lg:col-span-7 space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-semibold">
                         <i data-lucide="activity" class="w-4 h-4"></i>
                         <span data-i18n="hero_badge">e-Health · IA Ètica i Robòtica Assistencial per a la Prevenció del Suïcidi</span>
                     </div>
@@ -181,53 +160,51 @@
                         Tecnologia amb empatia per protegir vides.
                     </h1>
 
-                    <p class="text-lg text-emerald-100/90 leading-relaxed max-w-2xl" data-i18n="hero_subtitle">
+                    <p class="text-lg text-amber-100/90 leading-relaxed max-w-2xl" data-i18n="hero_subtitle">
                         Desenvolupem aplicacions mòbils amb algoritmes ètics de detecció precoç i robots d'acompanyament per a persones en vulnerabilitat emocional, ONG, centres sanitaris i administracions públiques. Atenció humana immediata en menys de 15 segons.
                     </p>
 
-                    <!-- Botons CTA -->
                     <div class="flex flex-wrap items-center gap-3.5 pt-2">
-                        <a href="tel:900123456" onclick="trackHubSpotEvent('hero_call_900')" class="inline-flex items-center gap-2.5 bg-white text-emerald-950 hover:bg-emerald-50 font-bold px-6 py-3.5 rounded-2xl shadow-lg transition">
-                            <i data-lucide="phone-call" class="w-5 h-5 text-emerald-600"></i>
+                        <a href="tel:900123456" onclick="trackHubSpotEvent('hero_call_900')" class="inline-flex items-center gap-2.5 bg-white text-slate-950 hover:bg-amber-50 font-bold px-6 py-3.5 rounded-2xl shadow-lg transition">
+                            <i data-lucide="phone-call" class="w-5 h-5 text-amber-600"></i>
                             <span data-i18n="hero_cta_call">Trucar al 900 123 456 (Gratuït)</span>
                         </a>
-                        <button onclick="openHubSpotChat('crisi')" class="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3.5 rounded-2xl border border-emerald-400/40 shadow-lg transition">
+                        <button onclick="openHubSpotChat('crisi')" class="inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-white font-semibold px-6 py-3.5 rounded-2xl border border-amber-400/40 shadow-lg transition">
                             <i data-lucide="messages-square" class="w-5 h-5"></i>
                             <span data-i18n="hero_cta_chat">Iniciar Xat en Viu 24/7</span>
                         </button>
-                        <a href="#contacte" class="inline-flex items-center gap-2 bg-slate-800/70 hover:bg-slate-800 text-emerald-200 font-medium px-5 py-3.5 rounded-2xl border border-slate-700 transition">
+                        <a href="#contacte" class="inline-flex items-center gap-2 bg-slate-800/70 hover:bg-slate-800 text-amber-200 font-medium px-5 py-3.5 rounded-2xl border border-slate-700 transition">
                             <i data-lucide="building-2" class="w-4 h-4"></i>
                             <span data-i18n="hero_cta_b2b">Portal ONG i Administracions</span>
                         </a>
                     </div>
 
-                    <!-- KPIs de la Visió 2030 i Departament -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-emerald-800/60">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-amber-800/60">
                         <div>
-                            <p class="text-2xl font-extrabold text-emerald-400">&lt; 15 seg</p>
-                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_1">Temps de resposta Front Office (Nivell 1)</p>
+                            <p class="text-2xl font-extrabold text-amber-400">&lt; 15 seg</p>
+                            <p class="text-xs text-amber-200/80" data-i18n="kpi_1">Temps de resposta Front Office (Nivell 1)</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-extrabold text-emerald-400">Sense límit</p>
-                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_2">Durada de trucada en alertes emocionals</p>
+                            <p class="text-2xl font-extrabold text-amber-400">Sense límit</p>
+                            <p class="text-xs text-amber-200/80" data-i18n="kpi_2">Durada de trucada en alertes emocionals</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-extrabold text-emerald-400">+40% al 2030</p>
-                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_3">Objectiu d'integració en xarxes públiques i ONG</p>
+                            <p class="text-2xl font-extrabold text-amber-400">+40% al 2030</p>
+                            <p class="text-xs text-amber-200/80" data-i18n="kpi_3">Objectiu d'integració en xarxes públiques i ONG</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-extrabold text-emerald-400">100% Propi</p>
-                            <p class="text-xs text-emerald-200/80" data-i18n="kpi_4">Zero externalització (Art. 9 RGPD)</p>
+                            <p class="text-2xl font-extrabold text-amber-400">100% Propi</p>
+                            <p class="text-xs text-amber-200/80" data-i18n="kpi_4">Zero externalització (Art. 9 RGPD)</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Columna Dreta: Assistent Interactiu de Triatge Emocional i Suport -->
+                <!-- TRIATGE EMOCIONAL -->
                 <div class="lg:col-span-5">
-                    <div class="bg-white/95 calm-card text-slate-800 rounded-3xl p-6 sm:p-7 shadow-2xl border border-emerald-500/30">
+                    <div class="bg-white/95 calm-card text-slate-800 rounded-3xl p-6 sm:p-7 shadow-2xl border border-amber-500/30">
                         <div class="flex items-center justify-between mb-4">
-                            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
-                                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-3 py-1 rounded-full">
+                                <span class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
                                 Triatge Intel·ligent + Humà
                             </span>
                             <span class="text-xs text-slate-400 font-medium">Nivell 1 → Nivell 2</span>
@@ -237,12 +214,10 @@
                             Com et podem ajudar ara mateix?
                         </h2>
                         <p class="text-xs text-slate-500 calm-text-muted mb-5" data-i18n="triage_desc">
-                            Selecciona el teu cas per connectar amb l'equip adequat (Operadors amb formació PAP, Psicòlegs de Back Office o Àrea B2B):
+                            Selecciona el teu cas per connectar amb l'equip adequat:
                         </p>
 
-                        <!-- Opcions de Triatge -->
                         <div class="space-y-3" id="triageOptions">
-                            <!-- Opció A: Crisi / Suport Emocional -->
                             <button onclick="selectTriagePath('crisi')" class="w-full text-left p-4 rounded-2xl border-2 border-rose-200 bg-rose-50/60 hover:bg-rose-100/80 transition flex items-start gap-3.5 group">
                                 <div class="p-2.5 rounded-xl bg-rose-600 text-white shrink-0 mt-0.5">
                                     <i data-lucide="heart-pulse" class="w-5 h-5"></i>
@@ -252,43 +227,40 @@
                                         Necessito suport emocional ara (per a mi o algú proper)
                                     </p>
                                     <p class="text-xs text-rose-800/80 mt-0.5">
-                                        Prioritat absoluta (&lt;15s). Escolta activa sense judicis i sense límit de temps.
+                                        Prioritat absoluta (&lt;15s). Escolta activa sense judicis.
                                     </p>
                                 </div>
                             </button>
 
-                            <!-- Opció B: Usuari App / Robot Assistencial (Incidència Tècnica) -->
-                            <button onclick="selectTriagePath('tecnic')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-emerald-400 bg-slate-50 hover:bg-emerald-50/40 calm-card transition flex items-start gap-3.5 group">
-                                <div class="p-2.5 rounded-xl bg-emerald-600 text-white shrink-0 mt-0.5">
+                            <button onclick="selectTriagePath('tecnic')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-amber-400 bg-slate-50 hover:bg-amber-50/40 calm-card transition flex items-start gap-3.5 group">
+                                <div class="p-2.5 rounded-xl bg-amber-500 text-white shrink-0 mt-0.5">
                                     <i data-lucide="bot" class="w-5 h-5"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-emerald-700" data-i18n="triage_opt_b">
+                                    <p class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-amber-700" data-i18n="triage_opt_b">
                                         Sóc usuari de l'App o Robot i tinc una incidència tècnica
                                     </p>
                                     <p class="text-xs text-slate-500 calm-text-muted mt-0.5">
-                                        Sincronització d'alertes, falsos positius d'IA, contrasenyes o peticions.
+                                        Sincronització d'alertes, falsos positius d'IA o contrasenyes.
                                     </p>
                                 </div>
                             </button>
 
-                            <!-- Opció C: ONG / Hospital / Administració Pública -->
-                            <button onclick="selectTriagePath('b2b')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-teal-400 bg-slate-50 hover:bg-teal-50/40 calm-card transition flex items-start gap-3.5 group">
-                                <div class="p-2.5 rounded-xl bg-teal-700 text-white shrink-0 mt-0.5">
+                            <button onclick="selectTriagePath('b2b')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-amber-400 bg-slate-50 hover:bg-amber-50/40 calm-card transition flex items-start gap-3.5 group">
+                                <div class="p-2.5 rounded-xl bg-amber-600 text-white shrink-0 mt-0.5">
                                     <i data-lucide="building" class="w-5 h-5"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-teal-700" data-i18n="triage_opt_c">
+                                    <p class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-amber-700" data-i18n="triage_opt_c">
                                         Represento una ONG, Hospital o Administració Pública
                                     </p>
                                     <p class="text-xs text-slate-500 calm-text-muted mt-0.5">
-                                        Acords SLA, integració d'IA ètica, licitacions i suport B2B (Dl-Dv 8h a 20h).
+                                        Acords SLA, integració d'IA ètica, licitacions i suport B2B.
                                     </p>
                                 </div>
                             </button>
                         </div>
 
-                        <!-- Resultat Dinàmic del Triatge -->
                         <div id="triageResultBox" class="hidden mt-4 pt-4 border-t border-slate-200"></div>
                     </div>
                 </div>
@@ -296,435 +268,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ===================================================================== -->
-    <!-- 4. IDENTITAT CORPORATIVA: MISSIÓ, VISIÓ I VALORS                      -->
-    <!-- ===================================================================== -->
-    <section id="qui-som" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-            <span class="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                1. Identitat Corporativa i Imatge
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900d-full flex items-center justify-center">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                                </div>
-                                <h3 class="text-2xl font-bold text-slate-800">La Nostra Missió</h3>
-                            </div>
-                            <p class="text-slate-600 leading-relaxed text-lg">
-                                Detectar conductes de risc de manera primerenca i prevenir el suïcidi a través de solucions innovadores d'IA i robòtica. Treballem braç a braç col·laborant estretament amb ONGs i administracions públiques per salvar vides.
-                            </p>
-                        </div>
-                        <div class="pt-8 border-t border-slate-100">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-12 h-12 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                </div>
-                                <h3 class="text-2xl font-bold text-slate-800">La Nostra Visió</h3>
-                            </div>
-                            <p class="text-slate-600 leading-relaxed text-lg">
-                                Convertir-nos en el referent tecnològic indispensable en salut mental a Catalunya i Espanya per a l'any 2030, democratitzant l'accés a eines de suport emocional avançades.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="order-1 lg:order-2">
-                    <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">Qui Som</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-                        La innovació només té sentit si millora el benestar de les persones.
-                    </h2>
-                    <p class="text-slate-600 text-lg mb-6">
-                        A EcoTech Solutions S.L. entenem que els problemes complexos requereixen respostes multidisciplinàries. Som un equip de tecnòlegs, psicòlegs i experts en dades units per un propòsit comú.
-                    </p>
-                    <p class="text-slate-600 text-lg">
-                        Desenvolupem algorismes ètics de detecció i assistents robòtics dissenyats no per substituir l'atenció humana, sinó per potenciar-la, alertar a temps i oferir contenció en els moments més crítics.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Valors Section -->
-    <section id="valors" class="py-24 bg-slate-50 border-t border-slate-200/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">Pilars Corporatius</span>
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Els nostres Valors</h2>
-                <p class="text-slate-600 text-lg">Guiem cada línia de codi i cada interacció sota principis inamovibles.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Valor 1 -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Empatia i Ètica</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Creiem en una tecnologia centrada exclusivament en l'ésser humà. Prioritzem la privacitat, el respecte i la calidesa en totes les nostres solucions e-Health.
-                    </p>
-                </div>
-
-                <!-- Valor 2 -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Innovació Responsable</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Desenvolupem intel·ligència artificial rigorosa, auditable i segura. Apliquem el mètode científic per garantir l'eficàcia clínica dels nostres algorismes.
-                    </p>
-                </div>
-
-                <!-- Valor 3 -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div class="w-14 h-14 bg-slate-100 text-slate-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Compromís Social</h3>
-                    <p class="text-slate-600 leading-relaxed">
-                        Treballem en col·laboració activa amb ONGs, associacions de pacients i entitats públiques per assegurar que les nostres eines arribin a qui més ho necessita.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Atenció al Client (Emergency & Admin) -->
-    <section id="atencio" class="py-24 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-slate-900 rounded-3xl overflow-hidden relative shadow-xl">
-                <!-- Abstract BG -->
-                <div class="absolute inset-0 opacity-20">
-                    <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grad)"></path>
-                        <defs>
-                            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#f59e0b" />
-                                <stop offset="100%" stop-color="#b45309" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                
-                <div class="relative z-10 p-8 md:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">No estàs sol. Estem aquí per escoltar-te.</h2>
-                        <p class="text-amber-100 text-lg mb-8">El nostre servei d'emergències compta amb operadors humans especialitzats, disposats a oferir suport emocional immediat. La tecnologia ens connecta, l'empatia ens salva.</p>
-                        
-                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 mb-6 cursor-pointer hover:bg-white/15 transition" onclick="copyPhone('900 123 456')">
-                            <div class="flex items-center justify-between gap-4 mb-2">
-                                <div class="flex items-center gap-3">
-                                    <span class="flex h-4 w-4 relative">
-                                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                      <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
-                                    </span>
-                                    <h4 class="text-white font-semibold text-lg">Línia d'Emergències 24/7 (Gratuïta)</h4>
-                                </div>
-                                <span class="text-amber-300 text-xs uppercase tracking-wider font-semibold bg-amber-500/20 px-2.5 py-1 rounded-md border border-amber-400/30">Copia el número</span>
-                            </div>
-                            <p class="text-3xl md:text-4xl font-bold text-white mb-2 tracking-wider">900 123 456</p>
-                            <p class="text-amber-100 text-sm">Disponible tots els dies de l'any, a qualsevol hora.</p>
-                        </div>
-                        
-                        <!-- Botó per obrir directament el giny de HubSpot Chat -->
-                        <button onclick="triggerHubspotChat()" class="w-full sm:w-auto px-6 py-3 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition shadow-lg flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                            Obrir Xat d'Emergència Ara
-                        </button>
-                    </div>
-                    
-                    <div class="bg-white rounded-2xl p-8 text-slate-800 shadow-sm">
-                        <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Atenció Administrativa</h3>
-                        <p class="text-slate-600 mb-6">Per a consultes sobre els nostres serveis B2B, solucions per a institucions i gestió general.</p>
-                        
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-5 h-5 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                <div>
-                                    <span class="font-semibold block">Dilluns a Divendres</span>
-                                    <span class="text-slate-500 text-sm">De 8:00 a 20:00 hores</span>
-                                </div>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                <span class="cursor-pointer hover:text-amber-600 transition" onclick="copyPhone('atencio@ecotechsolutions.cat')">atencio@ecotechsolutions.cat</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Nova Secció FAQ (Preguntes Freqüents) -->
-    <section id="faq" class="py-20 bg-white border-t border-slate-100">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">Respostes Ràpides</span>
-                <h2 class="text-3xl font-bold text-slate-900">Preguntes Freqüents (FAQ)</h2>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button class="w-full px-6 py-5 text-left font-bold text-slate-800 flex justify-between items-center focus:outline-none hover:bg-slate-50 transition" onclick="toggleFaq('faq-1')">
-                        Com funciona la detecció mitjançant Intel·ligència Artificial?
-                        <svg id="icon-faq-1" class="w-5 h-5 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="faq-1" class="hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4 bg-slate-50/50">
-                        Els nostres algoritmes auditable analitzen patrons d'interacció i expressions emocionals en l'aplicació per generar alertes primerenques. Sempre són verificades per l'equip humà de Front i Back Office.
-                    </div>
-                </div>
-
-                <div class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button class="w-full px-6 py-5 text-left font-bold text-slate-800 flex justify-between items-center focus:outline-none hover:bg-slate-50 transition" onclick="toggleFaq('faq-2')">
-                        Quin és el temps de resposta del servei d'atenció?
-                        <svg id="icon-faq-2" class="w-5 h-5 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="faq-2" class="hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4 bg-slate-50/50">
-                        La línia telefònica 900 i el xat web 24/7 compten amb atenció immediata (menys de 15 segons). L'atenció administrativa per correu es respon en menys de 24 hores laborables.
-                    </div>
-                </div>
-
-                <div class="border border-slate-200 rounded-2xl overflow-hidden">
-                    <button class="w-full px-6 py-5 text-left font-bold text-slate-800 flex justify-between items-center focus:outline-none hover:bg-slate-50 transition" onclick="toggleFaq('faq-3')">
-                        Com es garanteix el compliment del RGPD i la privacitat?
-                        <svg id="icon-faq-3" class="w-5 h-5 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="faq-3" class="hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4 bg-slate-50/50">
-                        Les dades de salut s'emmagatzemen sota xifrat d'alta seguretat i no s'externalitzen a tercers, garantint el màxim secret professional i la normativa de protecció de dades (Article 9 RGPD).
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacte Section -->
-    <section id="contacte" class="py-24 bg-slate-50 border-t border-slate-200/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <!-- Informació de contacte -->
-                <div>
-                    <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm mb-2 block">Parlem?</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Contacta amb l'equip</h2>
-                    <p class="text-slate-600 mb-8 text-lg">Si representes a una ONG, entitat sanitària o administració pública i vols integrar les nostres solucions d'IA, escriu-nos.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-amber-500 flex-shrink-0">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 mb-1">Seu Central</h4>
-                                <p class="text-slate-600">Carrer de la Tecnologia, 45<br>08001 Barcelona, Espanya</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-amber-500 flex-shrink-0">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 mb-1">Correu Electrònic</h4>
-                                <p class="text-slate-600">atencio@ecotechsolutions.cat</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formulari amb simulador de Ticket -->
-                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label for="nom" class="block text-sm font-medium text-slate-700 mb-1">Nom</label>
-                                <input type="text" id="nom" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-slate-50 focus:bg-white" placeholder="El teu nom">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Correu</label>
-                                <input type="email" id="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-slate-50 focus:bg-white" placeholder="correu@entitat.cat">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="entitat" class="block text-sm font-medium text-slate-700 mb-1">Organització / Entitat (Opcional)</label>
-                            <input type="text" id="entitat" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-slate-50 focus:bg-white" placeholder="Nom de l'organització">
-                        </div>
-                        <div>
-                            <label for="missatge" class="block text-sm font-medium text-slate-700 mb-1">Missatge</label>
-                            <textarea id="missatge" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition bg-slate-50 focus:bg-white resize-none" placeholder="Com podem col·laborar?"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg transition shadow-md flex items-center justify-center gap-2">
-                            <span>Enviar Missatge</span>
-                        </button>
-                        
-                        <div id="contact-success" class="hidden mt-4 p-4 bg-amber-50 text-amber-900 border border-amber-200 rounded-lg text-sm">
-                            <div class="flex items-center gap-2 mb-1 font-bold text-amber-700">
-                                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Sol·licitud enregistrada amb èxit!
-                            </div>
-                            <p id="ticket-info" class="text-slate-600">S'ha generat l'expedient de seguiment adequat.</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center text-white">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
-                            </svg>
-                        </div>
-                        <span class="font-bold text-lg text-slate-900">EcoTech Solutions S.L.</span>
-                    </div>
-                    <p class="text-slate-500 text-sm max-w-sm mb-6 leading-relaxed">
-                        Innovació tecnològica al servei de la salut mental. Treballem per un futur on la intel·ligència artificial ajudi a salvar vides i millorar el benestar emocional.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold text-slate-900 mb-4">Seccions</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#inici" class="hover:text-amber-600 transition">Inici</a></li>
-                        <li><a href="#qui-som" class="hover:text-amber-600 transition">Qui Som</a></li>
-                        <li><a href="#valors" class="hover:text-amber-600 transition">Els nostres Valors</a></li>
-                        <li><a href="#atencio" class="hover:text-amber-600 transition">Atenció al Client</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold text-slate-900 mb-4">Legal i Privacitat</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-amber-600 transition">Avís Legal</a></li>
-                        <li><a href="#" class="hover:text-amber-600 transition">Política de Privacitat</a></li>
-                        <li><a href="#" class="hover:text-amber-600 transition">Política de Galetes</a></li>
-                        <li><a href="#" class="hover:text-amber-600 transition">Accessibilitat</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-                <p>&copy; 2026 EcoTech Solutions S.L. Tots els drets reservats.</p>
-                <div class="flex gap-4">
-                    <span class="flex items-center gap-1">
-                        Fet amb <svg class="w-4 h-4 text-rose-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg> a Barcelona
-                    </span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Lògica i Funcionalitats en Javascript -->
-    <script>
-        // 1. Menú Mòbil
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            const links = menu.querySelectorAll('a');
-
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-            });
-
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                });
-            });
-
-            // Control de visibilitat del botó Back to Top
-            window.addEventListener('scroll', () => {
-                const backBtn = document.getElementById('back-to-top');
-                if (window.scrollY > 300) {
-                    backBtn.classList.remove('opacity-0', 'pointer-events-none');
-                } else {
-                    backBtn.classList.add('opacity-0', 'pointer-events-none');
-                }
-            });
-        });
-
-        // 2. Sistema de Notificacions Toast
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.textContent = message;
-            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-            
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-            }, 3000);
-        }
-
-        // 3. Copiar al portapapeles
-        function copyPhone(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast(`Copiat al porta-retalls: ${text}`);
-            }).catch(() => {
-                showToast(`Contacte: ${text}`);
-            });
-        }
-
-        // 4. Obrir Chat de HubSpot Natiu
-        function triggerHubspotChat() {
-            if (window.HubSpotConversations && window.HubSpotConversations.widget) {
-                window.HubSpotConversations.widget.open();
-                showToast("Obrint xat d'emergència...");
-            } else {
-                showToast("Carregant xat en viu... Un moment.");
-                setTimeout(() => {
-                    if (window.HubSpotConversations && window.HubSpotConversations.widget) {
-                        window.HubSpotConversations.widget.open();
-                    } else {
-                        window.location.hash = '#contacte';
-                    }
-                }, 1000);
-            }
-        }
-
-        // 5. Acordió FAQ
-        function toggleFaq(id) {
-            const el = document.getElementById(id);
-            const icon = document.getElementById('icon-' + id);
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-                icon.classList.add('rotate-180');
-            } else {
-                el.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-            }
-        }
-
-        // 6. Enviament del Formularis amb Ticket Simulats
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const randomTicket = 'ECO-' + Math.floor(10000 + Math.random() * 90000);
-            
-            document.getElementById('ticket-info').textContent = `Hem enviat una confirmació a ${email}. Número de registre assignat: #${randomTicket}.`;
-            document.getElementById('contact-success').classList.remove('hidden');
-            document.getElementById('contact-form').reset();
-            showToast(`Expedient #${randomTicket} creat amb èxit`);
-        }
-    </script>
-
-    <!-- Start of HubSpot Embed Code -->
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/149733808.js"></script>
-    <!-- End of HubSpot Embed Code -->
 
 </body>
 </html>
